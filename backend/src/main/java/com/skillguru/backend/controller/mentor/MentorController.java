@@ -17,37 +17,48 @@ import java.util.Map;
  * JWT Bearer
  *
  * Roles:
- * ADMIN / MENTOR / TEACHER / STUDENT
+ * ADMIN / TEACHER / MENTOR / STUDENT
  *
  * ============================================================
  *
- * ENDPOINTS
+ * MASTER API ENDPOINTS - GROUP 05
  *
- * 01. GET    /api/v1/mentors
+ * 01. GET
+ *     /api/v1/mentors
  *     List all mentors
  *
- * 02. GET    /api/v1/mentors/{id}
+ * 02. GET
+ *     /api/v1/mentors/{id}
  *     Get mentor detail
  *
- * 03. POST   /api/v1/mentors
+ * 03. POST
+ *     /api/v1/mentors
  *     Create mentor
  *
- * 04. PUT    /api/v1/mentors/{id}
+ * 04. PUT
+ *     /api/v1/mentors/{id}
  *     Update mentor
  *
- * 05. PATCH  /api/v1/mentors/{id}/status
- *     Update mentor status
- *
- * 06. DELETE /api/v1/mentors/{id}
+ * 05. DELETE
+ *     /api/v1/mentors/{id}
  *     Delete mentor
  *
- * 07. GET    /api/v1/mentors/{id}/students
+ * 06. GET
+ *     /api/v1/mentors/{id}/students
  *     Get mentor students
  *
- * 08. GET    /api/v1/mentors/{id}/schedule
- *     Get mentor schedule
+ * 07. GET
+ *     /api/v1/mentors/{id}/sessions
+ *     Get mentor sessions
+ *
+ * 08. GET
+ *     /api/v1/mentors/{id}/analytics
+ *     Get mentor analytics
  *
  * ============================================================
+ * Master API Reference:
+ * SkillGuru_Master_API_Swagger_v1.xlsx
+ *
  * Current implementation:
  * Endpoint skeleton only.
  *
@@ -111,19 +122,6 @@ public class MentorController {
 
     /**
      * 05
-     * PATCH /api/v1/mentors/{id}/status
-     */
-    @PatchMapping("/{id}/status")
-    public ResponseEntity<?> updateMentorStatus(@PathVariable Long id) {
-        return ResponseEntity.ok(Map.of(
-                "message", "Update mentor status endpoint ready",
-                "endpoint", "/api/v1/mentors/" + id + "/status",
-                "id", id
-        ));
-    }
-
-    /**
-     * 06
      * DELETE /api/v1/mentors/{id}
      */
     @DeleteMapping("/{id}")
@@ -136,7 +134,7 @@ public class MentorController {
     }
 
     /**
-     * 07
+     * 06
      * GET /api/v1/mentors/{id}/students
      */
     @GetMapping("/{id}/students")
@@ -149,14 +147,27 @@ public class MentorController {
     }
 
     /**
-     * 08
-     * GET /api/v1/mentors/{id}/schedule
+     * 07
+     * GET /api/v1/mentors/{id}/sessions
      */
-    @GetMapping("/{id}/schedule")
-    public ResponseEntity<?> getMentorSchedule(@PathVariable Long id) {
+    @GetMapping("/{id}/sessions")
+    public ResponseEntity<?> getMentorSessions(@PathVariable Long id) {
         return ResponseEntity.ok(Map.of(
-                "message", "Mentor schedule endpoint ready",
-                "endpoint", "/api/v1/mentors/" + id + "/schedule",
+                "message", "Mentor sessions endpoint ready",
+                "endpoint", "/api/v1/mentors/" + id + "/sessions",
+                "id", id
+        ));
+    }
+
+    /**
+     * 08
+     * GET /api/v1/mentors/{id}/analytics
+     */
+    @GetMapping("/{id}/analytics")
+    public ResponseEntity<?> getMentorAnalytics(@PathVariable Long id) {
+        return ResponseEntity.ok(Map.of(
+                "message", "Mentor analytics endpoint ready",
+                "endpoint", "/api/v1/mentors/" + id + "/analytics",
                 "id", id
         ));
     }
