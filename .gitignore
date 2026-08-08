@@ -1,0 +1,45 @@
+# ==============================
+# SkillGuru - Git Ignore
+# ==============================
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Node.js
+node_modules/
+dist/
+build/
+.npm/
+*.log
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Java / Maven
+target/
+*.class
+
+# Spring Boot
+spring.log
+
+# Test / Coverage
+coverage/
+reports/
+
+# Temporary
+tmp/
+temp/
+
+# Database
+*.sql.bak
+
+# OS temporary files
+*.swp
+*.swo
