@@ -10,57 +10,38 @@ import java.util.Map;
  * SkillGuru - Progress API
  * ============================================================
  *
- * API Base:
- * /api/v1
+ * GROUP 26 - PROGRESS
  *
- * Authentication:
- * JWT Bearer
- *
- * Roles:
- * ADMIN / TEACHER / MENTOR / STUDENT
- *
- * ============================================================
- *
- * MASTER API ENDPOINTS - GROUP 26
+ * MASTER ENDPOINTS
  *
  * 01. GET
  *     /api/v1/progress
- *     List all progress records
  *
  * 02. GET
  *     /api/v1/progress/{id}
- *     Get progress detail
  *
  * 03. POST
  *     /api/v1/progress
- *     Create progress record
  *
  * 04. PUT
  *     /api/v1/progress/{id}
- *     Update progress record
  *
- * 05. DELETE
- *     /api/v1/progress/{id}
- *     Delete progress record
+ * 05. POST
+ *     /api/v1/progress/lessons/{lessonId}/complete
  *
- * 06. GET
- *     /api/v1/students/{studentId}/progress
- *     Get progress belonging to a student
+ * 06. POST
+ *     /api/v1/progress/videos/{videoId}/watch
  *
  * 07. GET
- *     /api/v1/courses/{courseId}/progress
- *     Get progress belonging to a course
+ *     /api/v1/students/{studentId}/progress
  *
  * ============================================================
- * Master API:
- * SkillGuru_Master_API_Swagger_v1.xlsx
  *
- * Current implementation:
- * Endpoint skeleton only.
+ * REMOVED FROM PREVIOUS IMPLEMENTATION
  *
- * Business logic, DTO, service, repository, database,
- * JWT authorization, progress calculation and validation
- * will be implemented later.
+ * DELETE /api/v1/progress/{id}
+ * GET    /api/v1/courses/{courseId}/progress
+ *
  * ============================================================
  */
 @RestController
@@ -123,21 +104,38 @@ public class ProgressController {
 
     /**
      * 05
-     * DELETE /api/v1/progress/{id}
+     * POST /api/v1/progress/lessons/{lessonId}/complete
      */
-    @DeleteMapping("/progress/{id}")
-    public ResponseEntity<?> deleteProgress(
-            @PathVariable Long id) {
+    @PostMapping("/progress/lessons/{lessonId}/complete")
+    public ResponseEntity<?> completeLesson(
+            @PathVariable Long lessonId) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Delete progress endpoint ready",
-                "endpoint", "/api/v1/progress/" + id,
-                "id", id
+                "message", "Complete lesson progress endpoint ready",
+                "endpoint",
+                "/api/v1/progress/lessons/" + lessonId + "/complete",
+                "lessonId", lessonId
         ));
     }
 
     /**
      * 06
+     * POST /api/v1/progress/videos/{videoId}/watch
+     */
+    @PostMapping("/progress/videos/{videoId}/watch")
+    public ResponseEntity<?> watchVideo(
+            @PathVariable Long videoId) {
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Watch video progress endpoint ready",
+                "endpoint",
+                "/api/v1/progress/videos/" + videoId + "/watch",
+                "videoId", videoId
+        ));
+    }
+
+    /**
+     * 07
      * GET /api/v1/students/{studentId}/progress
      */
     @GetMapping("/students/{studentId}/progress")
@@ -146,23 +144,9 @@ public class ProgressController {
 
         return ResponseEntity.ok(Map.of(
                 "message", "Get student progress endpoint ready",
-                "endpoint", "/api/v1/students/" + studentId + "/progress",
+                "endpoint",
+                "/api/v1/students/" + studentId + "/progress",
                 "studentId", studentId
-        ));
-    }
-
-    /**
-     * 07
-     * GET /api/v1/courses/{courseId}/progress
-     */
-    @GetMapping("/courses/{courseId}/progress")
-    public ResponseEntity<?> getCourseProgress(
-            @PathVariable Long courseId) {
-
-        return ResponseEntity.ok(Map.of(
-                "message", "Get course progress endpoint ready",
-                "endpoint", "/api/v1/courses/" + courseId + "/progress",
-                "courseId", courseId
         ));
     }
 }
