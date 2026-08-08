@@ -35,33 +35,27 @@ import java.util.Map;
  *     /api/v1/transactions/{id}
  *
  * 03. GET
- *     /api/v1/students/{studentId}/transactions
+ *     /api/v1/transactions/{id}/invoice
  *
  * ============================================================
  *
  * IMPORTANT:
  *
- * Transactions are read-oriented in the master API.
+ * Transactions are read-only according to the master API.
  *
- * No POST, PUT or DELETE transaction endpoint is added.
+ * No POST, PUT, PATCH or DELETE endpoint is added.
  *
- * Current implementation:
- * Endpoint skeleton only.
- *
- * Business logic, DTO, service, repository, database,
- * payment gateway integration, transaction history and
- * validation will be implemented later.
- * ============================================================
+ *  * ============================================================
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/transactions")
 public class TransactionController {
 
     /**
      * 01
      * GET /api/v1/transactions
      */
-    @GetMapping("/transactions")
+    @GetMapping
     public ResponseEntity<?> getTransactions() {
         return ResponseEntity.ok(Map.of(
                 "message", "Get transactions endpoint ready",
@@ -73,7 +67,7 @@ public class TransactionController {
      * 02
      * GET /api/v1/transactions/{id}
      */
-    @GetMapping("/transactions/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getTransactionById(
             @PathVariable Long id) {
 
@@ -86,17 +80,17 @@ public class TransactionController {
 
     /**
      * 03
-     * GET /api/v1/students/{studentId}/transactions
+     * GET /api/v1/transactions/{id}/invoice
      */
-    @GetMapping("/students/{studentId}/transactions")
-    public ResponseEntity<?> getStudentTransactions(
-            @PathVariable Long studentId) {
+    @GetMapping("/{id}/invoice")
+    public ResponseEntity<?> getTransactionInvoice(
+            @PathVariable Long id) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Get student transactions endpoint ready",
+                "message", "Get transaction invoice endpoint ready",
                 "endpoint",
-                "/api/v1/students/" + studentId + "/transactions",
-                "studentId", studentId
+                "/api/v1/transactions/" + id + "/invoice",
+                "id", id
         ));
     }
 }
