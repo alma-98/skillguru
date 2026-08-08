@@ -10,38 +10,30 @@ import java.util.Map;
  * SkillGuru - Wishlist API
  * ============================================================
  *
- * API Base:
- * /api/v1
+ * GROUP 29 - WISHLIST
  *
- * Authentication:
- * JWT Bearer
- *
- * Roles:
- * ADMIN / TEACHER / MENTOR / STUDENT
- *
- * ============================================================
- *
- * MASTER API ENDPOINTS - GROUP 29
+ * MASTER ENDPOINTS
  *
  * 01. GET
  *     /api/v1/wishlist
- *     List wishlist items
  *
- * 02. GET
- *     /api/v1/wishlist/{id}
- *     Get wishlist item detail
+ * 02. POST
+ *     /api/v1/wishlist/courses/{courseId}
  *
- * 03. POST
- *     /api/v1/wishlist
- *     Add item to wishlist
+ * 03. DELETE
+ *     /api/v1/wishlist/courses/{courseId}
  *
- * 04. DELETE
- *     /api/v1/wishlist/{id}
- *     Remove item from wishlist
+ * 04. GET
+ *     /api/v1/students/{studentId}/wishlist
  *
  * ============================================================
- * Master API:
- * SkillGuru_Master_API_Swagger_v1.xlsx
+ *
+ * REMOVED FROM PREVIOUS IMPLEMENTATION
+ *
+ * GET    /api/v1/wishlist/{id}
+ * DELETE /api/v1/wishlist/{id}
+ *
+ * ============================================================
  *
  * Current implementation:
  * Endpoint skeleton only.
@@ -51,14 +43,14 @@ import java.util.Map;
  * ============================================================
  */
 @RestController
-@RequestMapping("/api/v1/wishlist")
+@RequestMapping("/api/v1")
 public class WishlistController {
 
     /**
      * 01
      * GET /api/v1/wishlist
      */
-    @GetMapping
+    @GetMapping("/wishlist")
     public ResponseEntity<?> getWishlist() {
         return ResponseEntity.ok(Map.of(
                 "message", "Get wishlist endpoint ready",
@@ -68,43 +60,49 @@ public class WishlistController {
 
     /**
      * 02
-     * GET /api/v1/wishlist/{id}
+     * POST /api/v1/wishlist/courses/{courseId}
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getWishlistById(
-            @PathVariable Long id) {
+    @PostMapping("/wishlist/courses/{courseId}")
+    public ResponseEntity<?> addCourseToWishlist(
+            @PathVariable Long courseId) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Get wishlist item by ID endpoint ready",
-                "endpoint", "/api/v1/wishlist/" + id,
-                "id", id
+                "message", "Add course to wishlist endpoint ready",
+                "endpoint",
+                "/api/v1/wishlist/courses/" + courseId,
+                "courseId", courseId
         ));
     }
 
     /**
      * 03
-     * POST /api/v1/wishlist
+     * DELETE /api/v1/wishlist/courses/{courseId}
      */
-    @PostMapping
-    public ResponseEntity<?> addToWishlist() {
+    @DeleteMapping("/wishlist/courses/{courseId}")
+    public ResponseEntity<?> removeCourseFromWishlist(
+            @PathVariable Long courseId) {
+
         return ResponseEntity.ok(Map.of(
-                "message", "Add item to wishlist endpoint ready",
-                "endpoint", "/api/v1/wishlist"
+                "message", "Remove course from wishlist endpoint ready",
+                "endpoint",
+                "/api/v1/wishlist/courses/" + courseId,
+                "courseId", courseId
         ));
     }
 
     /**
      * 04
-     * DELETE /api/v1/wishlist/{id}
+     * GET /api/v1/students/{studentId}/wishlist
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeFromWishlist(
-            @PathVariable Long id) {
+    @GetMapping("/students/{studentId}/wishlist")
+    public ResponseEntity<?> getStudentWishlist(
+            @PathVariable Long studentId) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Remove item from wishlist endpoint ready",
-                "endpoint", "/api/v1/wishlist/" + id,
-                "id", id
+                "message", "Get student wishlist endpoint ready",
+                "endpoint",
+                "/api/v1/students/" + studentId + "/wishlist",
+                "studentId", studentId
         ));
     }
 }
