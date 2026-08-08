@@ -6,108 +6,49 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * ============================================================
- * SkillGuru - AI Recommendation API
- * ============================================================
+ * SkillGuru
+ * Group 44 - AI Recommendation
  *
- * MASTER API CATEGORY
- * No. 44 - AI Recommendation
+ * MASTER ENDPOINTS:
  *
- * Total Endpoints: 4
- *
- * API Base:
- * /api/v1
- *
- * Authentication:
- * JWT Bearer
- *
- * ============================================================
- *
- * MASTER ENDPOINTS
- *
- * 01. POST
- *     /api/v1/ai/recommendations
- *
- * 02. GET
- *     /api/v1/ai/recommendations/{studentId}
- *
- * 03. POST
- *     /api/v1/ai/recommendations/{id}/feedback
- *
- * 04. DELETE
- *     /api/v1/ai/recommendations/{id}
- *
- * ============================================================
- *
- * Current implementation:
- * Endpoint skeleton only.
- *
- * Business logic, AI model integration, recommendation
- * engine, student profiling, feedback processing,
- * persistence and validation will be implemented later.
- * ============================================================
+ * GET  /api/v1/ai/recommendations
+ * GET  /api/v1/ai/recommendations/courses
+ * GET  /api/v1/ai/recommendations/learning-path
+ * POST /api/v1/ai/recommendations/refresh
  */
 @RestController
 @RequestMapping("/api/v1/ai/recommendations")
 public class AIRecommendationController {
 
-    /**
-     * 01
-     * POST /api/v1/ai/recommendations
-     */
-    @PostMapping
-    public ResponseEntity<?> createRecommendation() {
+    @GetMapping
+    public ResponseEntity<?> getRecommendations() {
         return ResponseEntity.ok(Map.of(
-                "message", "Create AI recommendation endpoint ready",
+                "message", "AI recommendations endpoint ready",
                 "endpoint", "/api/v1/ai/recommendations"
         ));
     }
 
-    /**
-     * 02
-     * GET /api/v1/ai/recommendations/{studentId}
-     */
-    @GetMapping("/{studentId}")
-    public ResponseEntity<?> getStudentRecommendations(
-            @PathVariable Long studentId) {
-
+    @GetMapping("/courses")
+    public ResponseEntity<?> getCourseRecommendations() {
         return ResponseEntity.ok(Map.of(
-                "message", "Get student AI recommendations endpoint ready",
-                "endpoint",
-                "/api/v1/ai/recommendations/" + studentId,
-                "studentId", studentId
+                "message", "AI course recommendations endpoint ready",
+                "endpoint", "/api/v1/ai/recommendations/courses"
         ));
     }
 
-    /**
-     * 03
-     * POST /api/v1/ai/recommendations/{id}/feedback
-     */
-    @PostMapping("/{id}/feedback")
-    public ResponseEntity<?> submitRecommendationFeedback(
-            @PathVariable Long id) {
-
+    @GetMapping("/learning-path")
+    public ResponseEntity<?> getLearningPathRecommendations() {
         return ResponseEntity.ok(Map.of(
-                "message", "AI recommendation feedback endpoint ready",
-                "endpoint",
-                "/api/v1/ai/recommendations/" + id + "/feedback",
-                "id", id
+                "message", "AI learning path recommendations endpoint ready",
+                "endpoint", "/api/v1/ai/recommendations/learning-path"
         ));
     }
 
-    /**
-     * 04
-     * DELETE /api/v1/ai/recommendations/{id}
-     */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteRecommendation(
-            @PathVariable Long id) {
-
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshRecommendations() {
         return ResponseEntity.ok(Map.of(
-                "message", "Delete AI recommendation endpoint ready",
-                "endpoint",
-                "/api/v1/ai/recommendations/" + id,
-                "id", id
+                "message", "AI recommendation refresh endpoint ready",
+                "endpoint", "/api/v1/ai/recommendations/refresh"
         ));
     }
 }

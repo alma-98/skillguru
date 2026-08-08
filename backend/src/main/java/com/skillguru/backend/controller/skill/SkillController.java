@@ -6,62 +6,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * ============================================================
- * SkillGuru - Skills API
- * ============================================================
+ * SkillGuru
+ * Group 49 - Skills
  *
- * MASTER API CATEGORY
- * No. 49 - Skills
+ * MASTER ENDPOINTS:
  *
- * Total Endpoints: 6
- *
- * API Base:
- * /api/v1
- *
- * Authentication:
- * JWT Bearer
- *
- * ============================================================
- *
- * MASTER ENDPOINTS
- *
- * 01. GET
- *     /api/v1/skills
- *
- * 02. GET
- *     /api/v1/skills/{id}
- *
- * 03. POST
- *     /api/v1/skills
- *
- * 04. PUT
- *     /api/v1/skills/{id}
- *
- * 05. DELETE
- *     /api/v1/skills/{id}
- *
- * 06. GET
- *     /api/v1/skills/{id}/courses
- *
- * ============================================================
- *
- * Current implementation:
- * Endpoint skeleton only.
- *
- * Business logic, DTO, service, repository, database,
- * skill-course relationships and validation will be
- * implemented later.
- * ============================================================
+ * GET    /api/v1/skills
+ * GET    /api/v1/skills/{id}
+ * POST   /api/v1/skills
+ * PUT    /api/v1/skills/{id}
+ * DELETE /api/v1/skills/{id}
+ * GET    /api/v1/students/{studentId}/skills
  */
 @RestController
-@RequestMapping("/api/v1/skills")
+@RequestMapping("/api/v1")
 public class SkillController {
 
-    /**
-     * 01
-     * GET /api/v1/skills
-     */
-    @GetMapping
+    @GetMapping("/skills")
     public ResponseEntity<?> getSkills() {
         return ResponseEntity.ok(Map.of(
                 "message", "Get skills endpoint ready",
@@ -69,11 +30,7 @@ public class SkillController {
         ));
     }
 
-    /**
-     * 02
-     * GET /api/v1/skills/{id}
-     */
-    @GetMapping("/{id}")
+    @GetMapping("/skills/{id}")
     public ResponseEntity<?> getSkillById(
             @PathVariable Long id) {
 
@@ -84,11 +41,7 @@ public class SkillController {
         ));
     }
 
-    /**
-     * 03
-     * POST /api/v1/skills
-     */
-    @PostMapping
+    @PostMapping("/skills")
     public ResponseEntity<?> createSkill() {
         return ResponseEntity.ok(Map.of(
                 "message", "Create skill endpoint ready",
@@ -96,11 +49,7 @@ public class SkillController {
         ));
     }
 
-    /**
-     * 04
-     * PUT /api/v1/skills/{id}
-     */
-    @PutMapping("/{id}")
+    @PutMapping("/skills/{id}")
     public ResponseEntity<?> updateSkill(
             @PathVariable Long id) {
 
@@ -111,11 +60,7 @@ public class SkillController {
         ));
     }
 
-    /**
-     * 05
-     * DELETE /api/v1/skills/{id}
-     */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/skills/{id}")
     public ResponseEntity<?> deleteSkill(
             @PathVariable Long id) {
 
@@ -126,18 +71,15 @@ public class SkillController {
         ));
     }
 
-    /**
-     * 06
-     * GET /api/v1/skills/{id}/courses
-     */
-    @GetMapping("/{id}/courses")
-    public ResponseEntity<?> getSkillCourses(
-            @PathVariable Long id) {
+    @GetMapping("/students/{studentId}/skills")
+    public ResponseEntity<?> getStudentSkills(
+            @PathVariable Long studentId) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Get skill courses endpoint ready",
-                "endpoint", "/api/v1/skills/" + id + "/courses",
-                "id", id
+                "message", "Get student skills endpoint ready",
+                "endpoint",
+                "/api/v1/students/" + studentId + "/skills",
+                "studentId", studentId
         ));
     }
 }

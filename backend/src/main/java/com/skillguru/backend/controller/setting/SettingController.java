@@ -6,55 +6,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * ============================================================
- * SkillGuru - Settings API
- * ============================================================
+ * SkillGuru
+ * Group 54 - Settings
  *
- * MASTER API CATEGORY
- * No. 54 - Settings
+ * MASTER ENDPOINTS:
  *
- * Total Endpoints: 4
- *
- * API Base:
- * /api/v1
- *
- * Authentication:
- * JWT Bearer
- *
- * ============================================================
- *
- * MASTER ENDPOINTS
- *
- * 01. GET
- *     /api/v1/settings
- *
- * 02. GET
- *     /api/v1/settings/{id}
- *
- * 03. PUT
- *     /api/v1/settings/{id}
- *
- * 04. DELETE
- *     /api/v1/settings/{id}
- *
- * ============================================================
- *
- * Current implementation:
- * Endpoint skeleton only.
- *
- * Business logic, DTO, service, repository, database,
- * configuration management and validation will be
- * implemented later.
- * ============================================================
+ * GET   /api/v1/settings
+ * GET   /api/v1/settings/{key}
+ * PUT   /api/v1/settings/{key}
+ * PATCH /api/v1/settings/{key}
  */
 @RestController
 @RequestMapping("/api/v1/settings")
 public class SettingController {
 
-    /**
-     * 01
-     * GET /api/v1/settings
-     */
     @GetMapping
     public ResponseEntity<?> getSettings() {
         return ResponseEntity.ok(Map.of(
@@ -63,48 +28,36 @@ public class SettingController {
         ));
     }
 
-    /**
-     * 02
-     * GET /api/v1/settings/{id}
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getSettingById(
-            @PathVariable Long id) {
+    @GetMapping("/{key}")
+    public ResponseEntity<?> getSettingByKey(
+            @PathVariable String key) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Get setting by ID endpoint ready",
-                "endpoint", "/api/v1/settings/" + id,
-                "id", id
+                "message", "Get setting by key endpoint ready",
+                "endpoint", "/api/v1/settings/" + key,
+                "key", key
         ));
     }
 
-    /**
-     * 03
-     * PUT /api/v1/settings/{id}
-     */
-    @PutMapping("/{id}")
+    @PutMapping("/{key}")
     public ResponseEntity<?> updateSetting(
-            @PathVariable Long id) {
+            @PathVariable String key) {
 
         return ResponseEntity.ok(Map.of(
                 "message", "Update setting endpoint ready",
-                "endpoint", "/api/v1/settings/" + id,
-                "id", id
+                "endpoint", "/api/v1/settings/" + key,
+                "key", key
         ));
     }
 
-    /**
-     * 04
-     * DELETE /api/v1/settings/{id}
-     */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteSetting(
-            @PathVariable Long id) {
+    @PatchMapping("/{key}")
+    public ResponseEntity<?> patchSetting(
+            @PathVariable String key) {
 
         return ResponseEntity.ok(Map.of(
-                "message", "Delete setting endpoint ready",
-                "endpoint", "/api/v1/settings/" + id,
-                "id", id
+                "message", "Patch setting endpoint ready",
+                "endpoint", "/api/v1/settings/" + key,
+                "key", key
         ));
     }
 }
